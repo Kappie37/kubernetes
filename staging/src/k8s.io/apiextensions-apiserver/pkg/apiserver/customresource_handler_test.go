@@ -390,7 +390,7 @@ func TestRouting(t *testing.T) {
 						t.Errorf("expected delegated called %v, got %v", tc.ExpectDelegateCalled, delegateCalled)
 					}
 					result := recorder.Result()
-					content, _ := ioutil.ReadAll(result.Body)
+					content, _ := io.ReadAll(result.Body)
 					if e, a := expectStatus, result.StatusCode; e != a {
 						t.Log(string(content))
 						t.Errorf("expected %v, got %v", e, a)
@@ -842,7 +842,7 @@ func getOpenAPISpecFromFile() (*spec.Swagger, error) {
 	if err != nil {
 		return nil, err
 	}
-	byteSpec, err := ioutil.ReadFile(path)
+	byteSpec, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}

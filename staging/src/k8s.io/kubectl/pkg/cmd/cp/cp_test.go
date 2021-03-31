@@ -559,7 +559,7 @@ func TestCopyToPod(t *testing.T) {
 		NegotiatedSerializer: ns,
 		Client: fake.CreateHTTPClient(func(req *http.Request) (*http.Response, error) {
 			responsePod := &v1.Pod{}
-			return &http.Response{StatusCode: http.StatusNotFound, Header: cmdtesting.DefaultHeader(), Body: ioutil.NopCloser(bytes.NewReader([]byte(runtime.EncodeOrDie(codec, responsePod))))}, nil
+			return &http.Response{StatusCode: http.StatusNotFound, Header: cmdtesting.DefaultHeader(), Body: io.NopCloser(bytes.NewReader([]byte(runtime.EncodeOrDie(codec, responsePod))))}, nil
 		}),
 	}
 
@@ -638,7 +638,7 @@ func TestCopyToPodNoPreserve(t *testing.T) {
 		NegotiatedSerializer: ns,
 		Client: fake.CreateHTTPClient(func(req *http.Request) (*http.Response, error) {
 			responsePod := &v1.Pod{}
-			return &http.Response{StatusCode: http.StatusNotFound, Header: cmdtesting.DefaultHeader(), Body: ioutil.NopCloser(bytes.NewReader([]byte(runtime.EncodeOrDie(codec, responsePod))))}, nil
+			return &http.Response{StatusCode: http.StatusNotFound, Header: cmdtesting.DefaultHeader(), Body: io.NopCloser(bytes.NewReader([]byte(runtime.EncodeOrDie(codec, responsePod))))}, nil
 		}),
 	}
 
@@ -929,7 +929,7 @@ func createTmpFile(t *testing.T, filepath, data string) {
 }
 
 func cmpFileData(t *testing.T, filePath, data string) {
-	actual, err := ioutil.ReadFile(filePath)
+	actual, err := os.ReadFile(filePath)
 	require.NoError(t, err)
 	assert.EqualValues(t, data, actual)
 }

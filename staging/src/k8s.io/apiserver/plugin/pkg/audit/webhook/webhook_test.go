@@ -66,7 +66,7 @@ type testWebhookHandler struct {
 
 func (t *testWebhookHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	err := func() error {
-		body, err := ioutil.ReadAll(r.Body)
+		body, err := io.ReadAll(r.Body)
 		if err != nil {
 			return fmt.Errorf("read webhook request body: %v", err)
 		}

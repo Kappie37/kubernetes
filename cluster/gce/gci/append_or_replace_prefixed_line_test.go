@@ -170,7 +170,7 @@ jelloworld
 			if err != nil {
 				t.Fatalf("Failed to run command: %v: %s", err, stderr)
 			}
-			got, err := ioutil.ReadFile(f.Name())
+			got, err := os.ReadFile(f.Name())
 			if err != nil {
 				t.Fatalf("Failed to read file contents: %v", err)
 			}

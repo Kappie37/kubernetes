@@ -143,7 +143,7 @@ func (c *ManifestTestCase) mustCreateEnv(env interface{}, target string, templat
 }
 
 func (c *ManifestTestCase) mustLoadPodFromManifest() {
-	json, err := ioutil.ReadFile(c.manifestDestination)
+	json, err := os.ReadFile(c.manifestDestination)
 	if err != nil {
 		c.t.Fatalf("Failed to read manifest: %s, %v", c.manifestDestination, err)
 	}

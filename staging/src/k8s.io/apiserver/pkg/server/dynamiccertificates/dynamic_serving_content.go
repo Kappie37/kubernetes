@@ -78,11 +78,11 @@ func (c *DynamicCertKeyPairContent) AddListener(listener Listener) {
 
 // loadServingCert determines the next set of content for the file.
 func (c *DynamicCertKeyPairContent) loadCertKeyPair() error {
-	cert, err := ioutil.ReadFile(c.certFile)
+	cert, err := os.ReadFile(c.certFile)
 	if err != nil {
 		return err
 	}
-	key, err := ioutil.ReadFile(c.keyFile)
+	key, err := os.ReadFile(c.keyFile)
 	if err != nil {
 		return err
 	}
@@ -176,5 +176,4 @@ func (c *DynamicCertKeyPairContent) Name() string {
 // CurrentCertKeyContent provides cert and key byte content
 func (c *DynamicCertKeyPairContent) CurrentCertKeyContent() ([]byte, []byte) {
 	certKeyContent := c.certKeyPair.Load().(*certKeyContent)
-	return certKeyContent.cert, certKeyContent.key
-}
+	
